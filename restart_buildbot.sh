@@ -1,5 +1,5 @@
 #!/bin/sh
-export PYTHONPATH=/home/yangqi3/temp/WebKit_svn/Tools/Scripts
+export PYTHONPATH=$PWD/../webkit/Tools/Scripts
 
 buildbot stop
 sleep 1

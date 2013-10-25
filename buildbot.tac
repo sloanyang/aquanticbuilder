@@ -3,7 +3,7 @@ import os
 from twisted.application import service
 from buildbot.master import BuildMaster
 
-basedir = '/home/yangqi3/src/buildbot/buildBotMaster'
+basedir = os.getcwd() #'/home/yangqi3/src/aquantic/aquanticbuilder' #os.path.realpath(__file__)
 rotateLength = '10000000'
 maxRotatedFiles = '10'
 configfile = 'master.cfg'
