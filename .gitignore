@@ -1,1 +1,6 @@
 *.pyc
+*.log
+state.sqlite
+gtk*
+uc*
+twistd.pid
