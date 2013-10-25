@@ -1,0 +1,47 @@
+{
+    "slaves":     [ 
+                    { "name": "192.168.56.101", "platform": "gtk-x86" },
+                    { "name": "192.168.56.102", "platform": "uc-armv7" },
+                    { "name": "10.1.123.181", "platform": "uc-armv7" }
+                 ],
+
+    "builders":   [ {
+                      "name": "GTK JSC Linux Release Build", "type": "Build", "builddir": "gtk-jsc-release",
+                      "platform": "gtk-x86", "configuration": "release", "architectures": "gtkJsc",
+		              "triggers": ["gtk-jsc-release-test-trigger"],
+                      "slavenames": ["192.168.56.101"]
+                    },
+                    {
+                      "name": "GTK JSC Linux Release Test", "type": "Test", "builddir": "gtk-jsc-release-test",
+                      "platform": "gtk-x86", "configuration": "release", "architectures": "gtkJsc",
+                      "slavenames": ["192.168.56.101"]
+                    },
+
+                    {
+                      "name": "UC JSC Release Build", "type": "Build", "builddir": "uc-release",
+                      "platform": "uc-armv7", "configuration": "release", "architectures": "ucJsc",
+                      "triggers": ["uc-release-test-trigger"],
+                      "slavenames": ["192.168.56.102"]
+                    },
+                    {
+                      "name": "UC JSC Release Test", "type": "Test", "builddir": "uc-release-test",
+                      "platform": "uc-armv7", "configuration": "release", "architectures": "ucJsc",
+                      "slavenames": ["10.1.123.181"]
+                    }
+                  ],
+	"schedulers": [
+                    { "type": "AnyBranchScheduler", "name": "webkit-trunk", "change_filter": "trunk_filter", "treeStableTimer": 45.0,
+                        "builderNames": ["GTK JSC Linux Release Build"]
+                    },
+                    { "type": "Triggerable", "name": "gtk-jsc-release-test-trigger",
+                        "builderNames": ["GTK JSC Linux Release Test"]
+                    },
+
+                    { "type": "AnyBranchScheduler", "name": "qt-trunk", "change_filter": "trunk_filter", "treeStableTimer": 45.0,
+                        "builderNames": ["UC JSC Release Build"]
+                    },
+                    { "type": "Triggerable", "name": "uc-release-test-trigger",
+                        "builderNames": ["UC JSC Release Test"]
+                    }
+                  ]
+}
