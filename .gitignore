@@ -5,3 +5,5 @@ gtk*
 uc*
 twistd.pid
 archives
+state.sqlite-shm
+state.sqlite-wal
