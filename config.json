@@ -14,6 +14,7 @@
                     {
                       "name": "GTK JSC Linux Release Test", "type": "Test", "builddir": "gtk-jsc-release-test",
                       "platform": "gtk-x86", "configuration": "release", "architectures": "gtkJsc",
+		              "triggers": ["gtk-jsc-release-build-trigger"],
                       "slavenames": ["192.168.56.101"]
                     },
 
@@ -30,9 +31,10 @@
                     }
                   ],
 	"schedulers": [
-                    { "type": "AnyBranchScheduler", "name": "webkit-trunk", "change_filter": "trunk_filter", "treeStableTimer": 45.0,
+                    { "type": "Triggerable", "name": "gtk-jsc-release-build-trigger",
                         "builderNames": ["GTK JSC Linux Release Build"]
                     },
+
                     { "type": "Triggerable", "name": "gtk-jsc-release-test-trigger",
                         "builderNames": ["GTK JSC Linux Release Test"]
                     },
