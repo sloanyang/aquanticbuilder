@@ -1,7 +1,7 @@
 {
     "slaves":     [ 
-                    { "name": "192.168.56.101", "platform": "gtk-x86" },
-                    { "name": "192.168.56.102", "platform": "uc-armv7" },
+                    { "name": "192.168.0.31", "platform": "gtk-x86" },
+                    { "name": "192.168.0.32", "platform": "uc-armv7" },
                     { "name": "10.1.123.181", "platform": "uc-armv7" }
                  ],
 
@@ -9,20 +9,20 @@
                       "name": "GTK JSC Linux Release Build", "type": "Build", "builddir": "gtk-jsc-release",
                       "platform": "gtk-x86", "configuration": "release", "architectures": "gtkJsc",
 		              "triggers": ["gtk-jsc-release-test-trigger"],
-                      "slavenames": ["192.168.56.101"]
+                      "slavenames": ["192.168.0.31"]
                     },
                     {
                       "name": "GTK JSC Linux Release Test", "type": "Test", "builddir": "gtk-jsc-release-test",
                       "platform": "gtk-x86", "configuration": "release", "architectures": "gtkJsc",
 		              "triggers": ["gtk-jsc-release-build-trigger"],
-                      "slavenames": ["192.168.56.101"]
+                      "slavenames": ["192.168.0.31"]
                     },
 
                     {
                       "name": "UC JSC Release Build", "type": "Build", "builddir": "uc-release",
                       "platform": "uc-armv7", "configuration": "release", "architectures": "ucJsc",
                       "triggers": ["uc-release-test-trigger"],
-                      "slavenames": ["192.168.56.102"]
+                      "slavenames": ["192.168.0.32"]
                     },
                     {
                       "name": "UC JSC Release Test", "type": "Test", "builddir": "uc-release-test",
