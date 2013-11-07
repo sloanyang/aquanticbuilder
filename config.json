@@ -2,6 +2,8 @@
     "slaves":     [ 
                     { "name": "192.168.0.31", "platform": "gtk-x86" },
                     { "name": "192.168.0.32", "platform": "uc-armv7" },
+                    { "name": "192.168.0.33", "platform": "qt-armv6" },
+                    { "name": "192.168.0.12", "platform": "qt-armv6" },
                     { "name": "10.1.123.181", "platform": "uc-armv7" }
                  ],
 
@@ -16,6 +18,18 @@
                       "platform": "gtk-x86", "configuration": "release", "architectures": "gtkJsc",
 		              "triggers": ["gtk-jsc-release-build-trigger"],
                       "slavenames": ["192.168.0.31"]
+                    },
+
+                    {
+                      "name": "QT JSC RASP Release Build", "type": "Build", "builddir": "qt-jsc-release",
+                      "platform": "qt-armv6", "configuration": "release", "architectures": "qtJsc",
+                      "triggers": ["uc-release-test-trigger"],
+                      "slavenames": ["192.168.0.33"]
+                    },
+                    {
+                      "name": "QT JSC RASP Release Test", "type": "Test", "builddir": "qt-release-test",
+                      "platform": "qt-armv6", "configuration": "release", "architectures": "qtJsc",
+                      "slavenames": ["192.168.0.12"]
                     },
 
                     {
@@ -37,6 +51,14 @@
 
                     { "type": "Triggerable", "name": "gtk-jsc-release-test-trigger",
                         "builderNames": ["GTK JSC Linux Release Test"]
+                    },
+
+                    { "type": "Triggerable", "name": "qt-jsc-release-build-trigger",
+                        "builderNames": ["QT JSC RASP Release Build"]
+                    },
+
+                    { "type": "Triggerable", "name": "qt-jsc-release-test-trigger",
+                        "builderNames": ["QT JSC RASP Release Test"]
                     },
 
                     { "type": "AnyBranchScheduler", "name": "qt-trunk", "change_filter": "trunk_filter", "treeStableTimer": 45.0,
